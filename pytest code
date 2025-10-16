@@ -1,0 +1,25 @@
+import pytest
+from tensorflow.keras.models import load_model
+import joblib
+from audio_predict import predict_audio_class
+
+# Fixtures for model and encoder
+@pytest.fixture(scope="module")
+def model():
+    return load_model('bilstm_model.h5')
+
+@pytest.fixture(scope="module")
+def label_encoder():
+    return joblib.load('label_encoder.pkl')
+
+# Provide multiple audio paths here
+@pytest.mark.parametrize("audio_path", [
+    "/content/audio1.wav",
+    "/content/audio2.wav",
+    "/content/audio3.wav"
+])
+def test_multiple_audio_predictions(audio_path, model, label_encoder):
+    """Test prediction works for multiple audio inputs."""
+    predicted_label = predict_audio_class(audio_path, model, label_encoder)
+    assert predicted_label is not None, f"Prediction failed for {audio_path}"
+    assert isinstance(predicted_label, str), "Predicted label must be a string"
