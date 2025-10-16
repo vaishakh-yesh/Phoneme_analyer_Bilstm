@@ -83,6 +83,5 @@ else:
 
 
 
-  warnings.warn(
-1/1 ━━━━━━━━━━━━━━━━━━━━ 1s 593ms/step
-The predicted label for the audio is: malayalam  
+ <img width="1829" height="147" alt="image" src="https://github.com/user-attachments/assets/bae7f808-7de5-4b83-8467-9958db03bebc" />
+
